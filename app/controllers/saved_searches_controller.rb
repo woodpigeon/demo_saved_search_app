@@ -12,6 +12,7 @@ class SavedSearchesController < ApplicationController
 
   def create
     @saved_search = SavedSearch.new(saved_search_params)
+    CreateAndScheduleSavedSearch.new(saved_search).call
     if @saved_search.save
       redirect_to saved_searches_path, notice: 'Search saved'
     else

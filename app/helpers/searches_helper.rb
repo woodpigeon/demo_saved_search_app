@@ -1,5 +1,7 @@
 module SearchesHelper
   def formatted_interval(saved_search)
-    "#{saved_search.interval} #{saved_search.period.to_s.pluralize(saved_search.interval)}"
+    interval = saved_search.interval
+    pluralized_period = saved_search.period.pluralize(interval)
+    "#{interval} #{pluralized_period}"
   end
 end
