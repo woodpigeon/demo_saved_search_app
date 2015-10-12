@@ -8,14 +8,28 @@
 <br/>
 <div class='row'>
   <div class='col-sm-12'>
-    <table class='table table-hover table-striped'>
+    <table class='table table-hover table-striped' id='saved_searches_table'>
       <thead>
-        <th>Name</th>
-        <th>Run every</th>
+        <tr>
+          <th>Name</th>
+          <th>Run every</th>
+          <th>Last run</th>
+          <th>Next run</th>
+          <th></th>
+        </tr>
       </thead>
       <tbody>
-        <td>aas</td>
-        <td>asasas</td>
+        <% @saved_searches.each do |search| %>
+          <tr>
+            <td><%= search.name %></td>
+            <td><%= formatted_interval(search)%></td>
+            <td></td>
+            <td></td>
+            <td class='controls'>
+              <%= link_to 'Edit', edit_saved_search_path(search) %>
+            </td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
     </div>

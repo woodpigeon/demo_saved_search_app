@@ -9,8 +9,8 @@
   <div class='col-sm-12'>
     <%= simple_form_for(@saved_search, wrappers: :horizontal_form) do |f| %>
       <%= f.input :name %>
-      <%= f.input :every_quantity %>
-      <%= f.input :every_period, 
+      <%= f.input :interval %>
+      <%= f.input :period, 
                   as: :select, 
                   collection: SavedSearch.periods.keys.to_a.map { |p| [p.humanize, p] },
                   default: 0 %>
