@@ -1,0 +1,23 @@
+<div class='row'>
+  <div class='col-sm-12'>
+    <h1>Create a new saved search</h1>
+    <p class="lead">Loreum ipsum delor</p>
+  </div>
+</div>
+<br/>
+<div class='row'>
+  <div class='col-sm-12'>
+    <%= simple_form_for(@saved_search, wrappers: :horizontal_form) do |f| %>
+      <%= f.input :name %>
+      <%= f.input :interval %>
+      <%= f.input :period, 
+                  as: :select, 
+                  collection: SavedSearch.periods.keys.to_a.map { |p| [p.humanize, p] },
+                  default: 0 %>
+      <div class='pull-right'>
+        <%= link_to 'Cancel', root_path %> &nbsp;
+        <%= f.submit 'Save', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

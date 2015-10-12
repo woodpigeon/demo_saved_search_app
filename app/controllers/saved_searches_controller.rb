@@ -19,6 +19,19 @@ class SavedSearchesController < ApplicationController
     end
   end
 
+  def edit
+    @saved_search = SavedSearch.find(params[:id])
+  end
+
+  def update
+    @saved_search = SavedSearch.find(params[:id])
+    if @saved_search.update(saved_search_params)
+      redirect_to saved_searches_path, notice: 'Search updated'
+    else
+      render :edit
+    end
+  end
+
   private
 
   def saved_search_params
