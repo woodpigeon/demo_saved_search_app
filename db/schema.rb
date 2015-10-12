@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151012143607) do
+ActiveRecord::Schema.define(version: 20151012152334) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -34,13 +34,14 @@ ActiveRecord::Schema.define(version: 20151012143607) do
   create_table "saved_searches", force: :cascade do |t|
     t.string   "name"
     t.string   "query"
-    t.string   "every"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "account_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "every_quantity", default: 1, null: false
+    t.integer  "every_period",   default: 0, null: false
   end
 
+  add_index "saved_searches", ["account_id"], name: "index_saved_searches_on_account_id"
   add_index "saved_searches", ["name"], name: "index_saved_searches_on_name"
-  add_index "saved_searches", ["user_id"], name: "index_saved_searches_on_user_id"
 
 end

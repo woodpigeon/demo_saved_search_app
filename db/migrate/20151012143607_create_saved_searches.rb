@@ -4,7 +4,7 @@ class CreateSavedSearches < ActiveRecord::Migration
       t.string :name, index: true
       t.string :query
       t.string :every
-      t.references :user, index: true
+      t.references :account, index: true
 
       t.timestamps null: false
     end

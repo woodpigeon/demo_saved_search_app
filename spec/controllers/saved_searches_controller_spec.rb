@@ -14,6 +14,7 @@ RSpec.describe SavedSearchesController, type: :controller do
       
       get :new
       expect(response).to have_http_status(:success)
+      expect(assigns(:saved_search)).to be_a_new(SavedSearch)
     end
   end
 
