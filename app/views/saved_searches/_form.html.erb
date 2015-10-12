@@ -7,13 +7,26 @@
 <br/>
 <div class='row'>
   <div class='col-sm-12'>
-    <%= simple_form_for(@saved_search, wrappers: :horizontal_form) do |f| %>
-      <%= f.input :name %>
-      <%= f.input :interval %>
-      <%= f.input :period, 
-                  as: :select, 
-                  collection: SavedSearch.periods.keys.to_a.map { |p| [p.humanize, p] },
-                  default: 0 %>
+    <%= simple_form_for(@saved_search, wrappers: :horizontal_form, html: { id: 'saved_search_form'}) do |f| %>
+    <%= f.input :name, placeholder: 'E.g. Fluffy cats' %>
+      <div class='row'>
+        <div class='col-sm-12'>
+          <%= f.label :interval, '* Run every' %>
+        </div>
+        <div class='col-sm-12'>
+          <%= f.input :interval, 
+                      label: false, 
+                      wrapper: false, 
+                      input_html: { class: 'stunted_input'} %>
+          <%= f.input :period, 
+                      label: false,
+                      wrapper: false,
+                      input_html: { class: 'stunted_input'},
+                      as: :select, 
+                      collection: SavedSearch.periods.keys.to_a.map { |p| [p.pluralize(2), p] },
+                      default: 0 %>
+        </div>
+      </div>
       <div class='pull-right'>
         <%= link_to 'Cancel', root_path %> &nbsp;
         <%= f.submit 'Save', class: 'btn btn-primary' %>
