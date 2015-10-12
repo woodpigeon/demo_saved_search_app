@@ -28,15 +28,6 @@ gem 'resque-scheduler'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'simple_form'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -45,6 +36,7 @@ end
 
 group :test do
   gem 'shoulda'
+  gem 'factory_girl_rails'
 end
 
 group :development do
