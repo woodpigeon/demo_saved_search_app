@@ -7,9 +7,14 @@ class UpdateAndRescheduleSearch
   attribute :params, Hash
 
   def call
-    saved_search = SavedSearch.find(id)
-    reschedule(saved_search) if saved_search.update(params)
-    saved_search
+    # saved_search = SavedSearch.find(id)
+    # reschedule(saved_search) if saved_search.update(params)
+    # saved_search
+
+    SavedSearch.find(id).tap do |search|
+      reschedule(search) if search.update(params)
+    end
+    # saved_search
   end
 
   def reschedule(saved_search)
