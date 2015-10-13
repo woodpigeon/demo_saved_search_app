@@ -19,8 +19,6 @@ class UpdateAndRescheduleSearch
 
   def reschedule(saved_search)
     schedulable_search = SchedulableSearch.new(saved_search)
-    if schedulable_search.requires_rescheduling?
-      schedulable_search.reschedule!
-    end
+    schedulable_search.reschedule! if schedulable_search.requires_rescheduling?
   end
 end

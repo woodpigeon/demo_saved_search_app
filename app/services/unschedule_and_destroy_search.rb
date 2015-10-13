@@ -6,6 +6,8 @@ class UnscheduleAndDestroySearch
   attribute :id, Integer
 
   def call
-    SavedSearch.destroy(id)
+    saved_search = SavedSearch.find(id)
+    SchedulableSearch.new(saved_search).unschedule!
+    saved_search.destroy!
   end
 end

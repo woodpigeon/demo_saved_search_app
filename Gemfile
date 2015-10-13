@@ -25,9 +25,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'resque'
 gem 'resque-scheduler'
+gem 'resque-web', require: 'resque_web'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'simple_form'
 gem 'virtus'
+gem 'thin'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -41,6 +43,7 @@ group :test do
 end
 
 group :development do
+  gem 'quiet_assets', group: :development
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   gem 'guard-rspec', require: false

@@ -1,6 +1,4 @@
 #
-#
-#
 class SavedSearchesController < ApplicationController
   def index
     @saved_searches = SavedSearch.all
@@ -11,7 +9,7 @@ class SavedSearchesController < ApplicationController
   end
 
   def create
-    @saved_search = CreateAndScheduleSearch.call(account: nil, # TODO: current_account
+    @saved_search = CreateAndScheduleSearch.call(account: nil,
                                                  params: saved_search_params)
     if @saved_search.valid?
       redirect_to saved_searches_path, notice: 'Search saved'
@@ -26,7 +24,7 @@ class SavedSearchesController < ApplicationController
 
   def update
     @saved_search = UpdateAndRescheduleSearch.call(id: params[:id],
-                                                   account: nil, # TODO: current_account
+                                                   account: nil,
                                                    params: saved_search_params)
     if @saved_search.valid?
       redirect_to saved_searches_path, notice: 'Search updated and rescheduled'
@@ -36,8 +34,7 @@ class SavedSearchesController < ApplicationController
   end
 
   def destroy
-    UnscheduleAndDestroySearch.call(account: nil, # TODO: current_account
-                                    id: params[:id])
+    UnscheduleAndDestroySearch.call(account: nil, id: params[:id])
     redirect_to saved_searches_path, notice: 'Search deleted'
   end
 

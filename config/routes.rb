@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   devise_for :accounts
   resources :saved_searches
   root to: 'saved_searches#index'
+
+  require "resque_web"
+  mount ResqueWeb::Engine => "/resque_web"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

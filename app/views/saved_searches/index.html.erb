@@ -18,6 +18,7 @@
           <th>Last run at</th>
           <th>Next run at</th>
           <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -29,6 +30,9 @@
             <td></td>
             <td class='controls'>
               <%= link_to 'Edit', edit_saved_search_path(search) %>
+            </td>
+            <td class='controls'>
+              <%= link_to 'Delete', search, method: :delete, data: {confirm: 'Are you sure?'} %>
             </td>
           </tr>
         <% end %>

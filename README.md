@@ -1,28 +1,44 @@
-== README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Overvew
 
-Things you may want to cover:
+A sample app to prototype the use of [resque scheduler](https://github.com/resque/resque-scheduler)'s dynamic scheduling
+to allow a user to specify search criteria and a recurring interval (for example every 2 weeks) after which search results are emailed to them.
+The user can edit their saved searches (potentially removing them from resque-scheduler and readding them with the new interval), or delete them.
+The appproach could equally be applied to something like user-scheduled webhooks.
 
-* Ruby version
+I don't yet know how this scales, i.e how many 'saved searches' can be added as descrete schedules without performance or other limitations being hit.
 
-* System dependencies
+This is still a work in progress.
 
-* Configuration
+## Installation 
 
-* Database creation
+You'll need to have Ruby 2.x.
 
-* Database initialization
+Set up the app:
 
-* How to run the test suite
+```
+$ git clone https://github.com/woodpigeon/demo_saved_search_app.git
+$ cd demo_saved_search_app
+$ bundle
+$ bundle exec rake db:setup
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Run the app in one terminal tab:
 
-* Deployment instructions
+```
+$ bundle exec spring rails
+```
 
-* ...
+Run [resque](https://github.com/resque/resque) in another ternimal/tab:
 
+```
+$ QUEUE=* bundle exec spring rake resque:work
+```
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Run [resque scheduler](https://github.com/resque/resque-scheduler) in another terminal/tab:
+
+```
+$ bundle exec spring rake resque:scheduler
+```
+
+Open ```http://localhost:3000```.

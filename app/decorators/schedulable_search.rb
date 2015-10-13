@@ -1,8 +1,8 @@
 #
-# Decorates a SavedSearch adding scheduling features 
+# Decorates a SavedSearch adding scheduling features
 #
 class SchedulableSearch < SimpleDelegator
-  # The name used by resque schedulrer to identify this search once 
+  # The name used by resque schedulrer to identify this search once
   # its a scheduled job
   def schedule_name
     "saved_search_#{id}"
@@ -47,7 +47,7 @@ class SchedulableSearch < SimpleDelegator
   end
 
   def requires_rescheduling?
-    changes = previous_changes.keys & ['interval', 'period']
+    changes = previous_changes.keys & %w(interval period)
     changes.any?
   end
 end
