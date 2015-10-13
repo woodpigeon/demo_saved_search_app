@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root to: 'saved_searches#index'
 
   require "resque_web"
+  ResqueWeb::Engine.eager_load!
   mount ResqueWeb::Engine => "/resque_web"
 
   # The priority is based upon order of creation: first created -> highest priority.
