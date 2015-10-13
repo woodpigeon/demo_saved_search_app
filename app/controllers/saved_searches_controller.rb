@@ -11,9 +11,9 @@ class SavedSearchesController < ApplicationController
   end
 
   def create
-    @saved_search = SavedSearch.new(saved_search_params)
-    CreateAndScheduleSavedSearch.new(saved_search).call
-    if @saved_search.save
+    @saved_search = CreateAndScheduleSearch.call(account: current_account,
+                                                 params: saved_search_params)
+    if @saved_search.valid?
       redirect_to saved_searches_path, notice: 'Search saved'
     else
       render :new
@@ -25,9 +25,11 @@ class SavedSearchesController < ApplicationController
   end
 
   def update
-    @saved_search = SavedSearch.find(params[:id])
-    if @saved_search.update(saved_search_params)
-      redirect_to saved_searches_path, notice: 'Search updated'
+    @saved_search = UpdateAndRescheduleSearch.call(id: params[:id],
+                                                   account: current_account,
+                                                   params: saved_search_params)
+    if @saved_search.valid?
+      redirect_to saved_searches_path, notice: 'Search updated and rescheduled'
     else
       render :edit
     end

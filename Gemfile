@@ -27,6 +27,7 @@ gem 'resque'
 gem 'resque-scheduler'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'simple_form'
+gem 'virtus'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
