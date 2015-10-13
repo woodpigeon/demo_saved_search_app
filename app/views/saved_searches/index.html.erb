@@ -1,11 +1,13 @@
-<div class='row'>
+<% content_for(:page_header) do %>
+  <h1>Saved searches</h1>
+<% end %>
+
+<div class='row pull-right'>
   <div class='col-sm-12'>
-    <h1>Saved searches</h1>
-    <p class="lead">Loreum ipsum delor</p>
     <%= link_to 'Add', new_saved_search_path, class: "btn btn-primary" %>
   </div>
 </div>
-<br/>
+
 <div class='row'>
   <div class='col-sm-12'>
     <table class='table table-hover table-striped' id='saved_searches_table'>

@@ -1,3 +1,6 @@
+#
+# Courtesy of bootstrap-sass-extras
+#
 module BootstrapFlashHelper
   ALERT_TYPES_MAP = {
     notice: :success,
