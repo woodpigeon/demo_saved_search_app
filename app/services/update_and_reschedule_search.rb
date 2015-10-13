@@ -8,10 +8,14 @@ class UpdateAndRescheduleSearch
 
   def call
     saved_search = SavedSearch.find(id)
-    if saved_search.update(params)
-      # TODO: remove and re-add schedule if either interval or period changed
-      # TODO: pass in a service to expose the rescheduling?
-    end
+    reschedule(saved_search) if saved_search.update(params)
     saved_search
+  end
+
+  def reschedule(saved_search)
+    schedulable_search = SchedulableSearch.new(saved_search)
+    if schedulable_search.requires_rescheduling?
+      schedulable_search.reschedule!
+    end
   end
 end

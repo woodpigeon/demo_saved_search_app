@@ -11,9 +11,7 @@ class CreateAndScheduleSearch
   # create and schedule
   def call
     saved_search = SavedSearch.new(params)
-    if saved_search.update(params)
-      # create schedule
-    end
+    SchedulableSearch.new(saved_search).schedule! if saved_search.update(params)
     saved_search # valid? will be false if there was a problem saving
   end
 end
