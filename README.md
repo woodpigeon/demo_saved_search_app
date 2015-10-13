@@ -10,9 +10,10 @@ I don't yet know how this scales, i.e how many 'saved searches' can be added as 
 
 This is still a work in progress.
 
-## Installation 
+## Installation
 
-You'll need to have Ruby 2.x.
+You'll need to have Ruby 2.x.x, [redis](http://redis.io/topics/quickstart) and
+[bundler](http://bundler.io/) installed ie ```gem install bundler```.
 
 Set up the app:
 
@@ -42,3 +43,17 @@ $ bundle exec spring rake resque:scheduler
 ```
 
 Open ```http://localhost:3000```.
+
+## Tests
+
+```
+$ bundle exec rspec
+```
+
+or
+
+```
+$ bundle exec guard
+```
+
+for continuous testing.

@@ -29,7 +29,7 @@ gem 'resque-web', require: 'resque_web'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'simple_form'
 gem 'virtus'
-gem 'thin'
+gem 'puma'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -49,4 +49,10 @@ group :development do
   gem 'guard-rspec', require: false
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'rubocop', require: false
+end
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
 end

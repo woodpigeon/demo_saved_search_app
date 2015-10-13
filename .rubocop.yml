@@ -8,3 +8,6 @@ AllCops:
     - Gemfile
     - Guardfile
     - Rakefile
+Style/Documentation: 
+  Enabled: false
+ 
