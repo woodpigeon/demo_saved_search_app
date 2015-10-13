@@ -19,14 +19,14 @@ RSpec.describe SavedSearchesController, type: :controller do
 
   describe 'POST #create' do
     it 'should redirect to index on successful save' do
-      expect_any_instance_of(SavedSearch).to receive(:valid?).and_return(true)
+      expect_any_instance_of(SavedSearch).to receive(:valid?).twice.and_return(true)
       post :create, saved_search: { name: 'something' }
       expect(flash[:notice]).to_not be_nil
       expect(response).to redirect_to(saved_searches_url)
     end
   
     it 'should render :new template if on unsuccessful save' do
-      expect_any_instance_of(SavedSearch).to receive(:valid?).and_return(false)
+      expect_any_instance_of(SavedSearch).to receive(:valid?).twice.and_return(false)
       post :create, saved_search: { name: 'something' }
       expect(flash[:notice]).to be_nil
       expect(response).to render_template(:new)
@@ -48,15 +48,25 @@ RSpec.describe SavedSearchesController, type: :controller do
     let!(:updated_attrs) { { name: 'B', interval: 2, period: 'week' } }
 
     it 'should render redirect to index after successful update' do
-      expect_any_instance_of(SavedSearch).to receive(:valid?).and_return(true)
+      expect_any_instance_of(SavedSearch).to receive(:valid?).twice.and_return(true)
       patch :update, id: saved_search.id, saved_search: updated_attrs
       expect(response).to redirect_to(saved_searches_url)
     end
 
-    it 'should render render edit after unsuccessful update' do
-      expect_any_instance_of(SavedSearch).to receive(:valid?).and_return(false)
+    it 'should render edit after unsuccessful update' do
+      expect_any_instance_of(SavedSearch).to receive(:valid?).twice.and_return(false)
       patch :update, id: saved_search.id, saved_search: updated_attrs
       expect(response).to render_template(:edit)
+    end
+  end
+
+  describe 'POST #destroy' do
+    it 'should redirect to index on successful delete' do
+      saved_search = SavedSearch.create(name: 'A', interval: 1, period: 'month')
+      delete :destroy, id: saved_search.id
+      expect(flash[:notice]).to_not be_nil
+      expect(response).to redirect_to(saved_searches_url)
+      expect(SavedSearch.find_by(id: saved_search.id)).to be_nil
     end
   end
 end

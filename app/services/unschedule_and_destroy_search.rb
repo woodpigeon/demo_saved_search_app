@@ -3,8 +3,9 @@ class UnscheduleAndDestroySearch
   include Virtus.model
 
   attribute :account, Account
-  attribute :params, Hash
+  attribute :id, Integer
 
   def call
+    SavedSearch.destroy(id)
   end
 end

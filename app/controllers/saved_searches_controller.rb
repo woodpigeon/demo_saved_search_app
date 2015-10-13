@@ -11,7 +11,7 @@ class SavedSearchesController < ApplicationController
   end
 
   def create
-    @saved_search = CreateAndScheduleSearch.call(account: current_account,
+    @saved_search = CreateAndScheduleSearch.call(account: nil, # TODO: current_account
                                                  params: saved_search_params)
     if @saved_search.valid?
       redirect_to saved_searches_path, notice: 'Search saved'
@@ -26,13 +26,19 @@ class SavedSearchesController < ApplicationController
 
   def update
     @saved_search = UpdateAndRescheduleSearch.call(id: params[:id],
-                                                   account: current_account,
+                                                   account: nil, # TODO: current_account
                                                    params: saved_search_params)
     if @saved_search.valid?
       redirect_to saved_searches_path, notice: 'Search updated and rescheduled'
     else
       render :edit
     end
+  end
+
+  def destroy
+    UnscheduleAndDestroySearch.call(account: nil, # TODO: current_account
+                                    id: params[:id])
+    redirect_to saved_searches_path, notice: 'Search deleted'
   end
 
   private
