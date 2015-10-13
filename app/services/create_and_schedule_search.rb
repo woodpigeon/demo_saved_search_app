@@ -7,7 +7,7 @@ class CreateAndScheduleSearch
 
   attribute :account, Account
   attribute :params, Hash
-\
+
   # create and schedule
   def call
     saved_search = SavedSearch.new(params)
