@@ -8,7 +8,9 @@ The appproach could equally be applied to something like user-scheduled webhooks
 
 I don't yet know how this scales, i.e how many 'saved searches' can be added as descrete schedules without performance or other limitations being hit.
 
-This is still a work in progress.
+_This is still a work in progress_
+
+The sample app is deployed to heroku [here](https://demo-saved-search-app.herokuapp.com).
 
 ## Installation
 
